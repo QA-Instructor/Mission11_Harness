@@ -43,3 +43,10 @@ pipeline:
                         -Dsonar.host.url=http://35.206.188.23:9000
                     envVariables:
                       SONAR_TOKEN: sqp_cd99ce7a24d1e8cdc32e8c41323adf91d11009bd
+              - step:
+                  type: Run
+                  name: list directories and permissions
+                  identifier: list_directories_and_permissions
+                  spec:
+                    shell: Sh
+                    command: ls -la
