@@ -1,0 +1,45 @@
+pipeline:
+  name: Sonarqube ReactJS Mission 11
+  identifier: Sonarqube_ReactJS_Mission_11
+  projectIdentifier: SonarQube_Test_Project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: Mission11_Connector
+        build: <+input>
+  stages:
+    - stage:
+        name: Scan ReactJS Codebase
+        identifier: Scan_ReactJS_Codebase
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: sonar code scan
+                  identifier: sonar_code_scan
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: sonarsource/sonar-scanner-cli:11
+                    shell: Sh
+                    command: |-
+                      sonar-scanner \
+                        -Dsonar.projectKey=demo-project \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://35.206.188.23:9000
+                    envVariables:
+                      SONAR_TOKEN: sqp_cd99ce7a24d1e8cdc32e8c41323adf91d11009bd
