@@ -1,0 +1,14 @@
+inputSet:
+  name: mission11 input set
+  identifier: mission11_input_set
+  orgIdentifier: default
+  projectIdentifier: SonarQube_Test_Project
+  pipeline:
+    identifier: Sonarqube_ReactJS_Mission_11
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
